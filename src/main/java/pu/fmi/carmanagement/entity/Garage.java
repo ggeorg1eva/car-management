@@ -22,6 +22,6 @@ public class Garage extends BaseEntity {
     private String city;
     @Column(nullable = false, columnDefinition = "BIGINT default 0")
     private Long capacity;
-    @OneToMany
+    @OneToMany(mappedBy = "garage")
     private List<MaintenanceRequests> requests;
 }
