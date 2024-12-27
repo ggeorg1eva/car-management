@@ -1,4 +1,4 @@
-package pu.fmi.carmanagement.entity;
+package pu.fmi.carmanagement.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,5 +23,5 @@ public class Garage extends BaseEntity {
     @Column(nullable = false, columnDefinition = "BIGINT default 0")
     private Long capacity;
     @OneToMany(mappedBy = "garage")
-    private List<MaintenanceRequests> requests;
+    private List<MaintenanceRequest> requests;
 }

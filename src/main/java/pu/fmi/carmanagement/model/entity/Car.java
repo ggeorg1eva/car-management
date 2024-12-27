@@ -1,4 +1,4 @@
-package pu.fmi.carmanagement.entity;
+package pu.fmi.carmanagement.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

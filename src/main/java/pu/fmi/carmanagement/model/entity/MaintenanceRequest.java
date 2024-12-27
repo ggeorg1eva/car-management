@@ -1,4 +1,4 @@
-package pu.fmi.carmanagement.entity;
+package pu.fmi.carmanagement.model.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Table(name = "maintenance_requests")
 @Getter
 @Setter
-public class MaintenanceRequests extends BaseEntity {
+public class MaintenanceRequest extends BaseEntity {
     @Column(name = "service_type", nullable = false)
     private String serviceType;
     @Column(name = "scheduled_date", nullable = false)
