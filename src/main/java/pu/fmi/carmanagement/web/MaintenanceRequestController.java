@@ -1,11 +1,12 @@
 package pu.fmi.carmanagement.web;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import pu.fmi.carmanagement.model.dto.ResponseMaintenanceDTO;
+import org.springframework.web.bind.annotation.*;
+import pu.fmi.carmanagement.model.dto.response.ResponseMaintenanceDTO;
+import pu.fmi.carmanagement.model.dto.request.UpdateMaintenanceDTO;
 import pu.fmi.carmanagement.service.MaintenanceRequestService;
 
 @RestController
@@ -18,15 +19,14 @@ public class MaintenanceRequestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseMaintenanceDTO> getRequestById(@PathVariable("id") Long id) {
+    public ResponseEntity<ResponseMaintenanceDTO> getRequestById(@PathVariable("id") @Positive @NotNull Long id) {
         ResponseMaintenanceDTO resp = requestService.getRequestById(id);
         return ResponseEntity.ok(resp);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseMaintenanceDTO> updateRequest(@PathVariable @Positive @NotNull Long id, @RequestBody @Valid UpdateMaintenanceDTO requestDTO) {
+        ResponseMaintenanceDTO resp = requestService.updateRequest(id, requestDTO);
+        return ResponseEntity.ok(resp);
+    }
 }
-//id integer($int64)
-//carId integer($int64)
-//carName string
-//serviceType string
-//scheduledDate string($date)
-//garageId integer($int64)
-//garageName string

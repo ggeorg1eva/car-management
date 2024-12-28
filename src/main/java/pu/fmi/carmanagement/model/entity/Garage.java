@@ -4,15 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "garages")
-@Getter
-@Setter
 public class Garage extends BaseEntity {
     @Column(nullable = false)
     private String name;
@@ -24,4 +20,44 @@ public class Garage extends BaseEntity {
     private Long capacity;
     @OneToMany(mappedBy = "garage")
     private List<MaintenanceRequest> requests;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Long getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Long capacity) {
+        this.capacity = capacity;
+    }
+
+    public List<MaintenanceRequest> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<MaintenanceRequest> requests) {
+        this.requests = requests;
+    }
 }
