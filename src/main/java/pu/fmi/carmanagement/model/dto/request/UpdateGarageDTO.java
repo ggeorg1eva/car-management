@@ -1,19 +1,17 @@
-package pu.fmi.carmanagement.model.dto.response;
+package pu.fmi.carmanagement.model.dto.request;
 
-public class ResponseGarageDTO {
-    private Long id;
+import jakarta.validation.constraints.Positive;
+import org.hibernate.validator.constraints.Length;
+
+public class UpdateGarageDTO {
+    @Length(max = 80)
     private String name;
+    @Length(max = 80)
     private String location;
+    @Length(max = 30)
     private String city;
+    @Positive
     private Long capacity;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
