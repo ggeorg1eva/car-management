@@ -5,7 +5,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
-public class UtilService {
+public class UtilMethods {
     /**
      * Helper method which checks if the source is found in the database. If it isn't found, a ResponseStatusException is thrown.
      * @param inDB - the source to check

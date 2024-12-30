@@ -1,31 +1,34 @@
 package pu.fmi.carmanagement.model.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.lang.Nullable;
 
 import java.time.LocalDate;
 
-public class UpdateMaintenanceDTO {
-    private Long id;
+public class CreateMaintenanceDTO {
     @Positive
+    @NotNull
+    private Long garageId;
+    @Positive
+    @NotNull
     private Long carId;
     @Length(max = 80)
+    @NotBlank
     private String serviceType;
-    @Nullable
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate scheduledDate;
-    private Long garageId;
 
-    public Long getId() {
-        return id;
+    public Long getGarageId() {
+        return garageId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setGarageId(Long garageId) {
+        this.garageId = garageId;
     }
 
     public Long getCarId() {
@@ -50,13 +53,5 @@ public class UpdateMaintenanceDTO {
 
     public void setScheduledDate(LocalDate scheduledDate) {
         this.scheduledDate = scheduledDate;
-    }
-
-    public Long getGarageId() {
-        return garageId;
-    }
-
-    public void setGarageId(Long garageId) {
-        this.garageId = garageId;
     }
 }
