@@ -15,6 +15,8 @@ import java.util.Optional;
 public interface MaintenanceRequestRepository extends JpaRepository<MaintenanceRequest, Long> {
     Optional<MaintenanceRequest> findById(Long id);
 
+    List<MaintenanceRequest> findAllByGarage(Garage garage);
+
     List<MaintenanceRequest> findAllByGarageAndScheduledDateBetween(Garage garage, LocalDate startDate, LocalDate endDate);
 
     @Query("SELECT m FROM MaintenanceRequest m " +

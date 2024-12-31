@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "garages")
@@ -19,7 +19,7 @@ public class Garage extends BaseEntity {
     @Column(nullable = false, columnDefinition = "BIGINT default 0")
     private Long capacity;
     @OneToMany(mappedBy = "garage")
-    private List<MaintenanceRequest> requests;
+    private Set<MaintenanceRequest> requests;
 
     public String getName() {
         return name;
@@ -53,11 +53,11 @@ public class Garage extends BaseEntity {
         this.capacity = capacity;
     }
 
-    public List<MaintenanceRequest> getRequests() {
+    public Set<MaintenanceRequest> getRequests() {
         return requests;
     }
 
-    public void setRequests(List<MaintenanceRequest> requests) {
+    public void setRequests(Set<MaintenanceRequest> requests) {
         this.requests = requests;
     }
 }

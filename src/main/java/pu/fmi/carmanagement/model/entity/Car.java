@@ -2,7 +2,7 @@ package pu.fmi.carmanagement.model.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "cars")
@@ -16,7 +16,11 @@ public class Car extends BaseEntity {
     @Column(name = "license_plate", nullable = false)
     private String licensePlate;
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Garage> garages;
+    @JoinTable(name = "cars_garages",
+      joinColumns = @JoinColumn(name = "car_id"),
+      inverseJoinColumns = @JoinColumn(name = "garage_id")
+    )
+    private Set<Garage> garages;
 
     public String getMake() {
         return make;
@@ -50,11 +54,11 @@ public class Car extends BaseEntity {
         this.licensePlate = licensePlate;
     }
 
-    public List<Garage> getGarages() {
+    public Set<Garage> getGarages() {
         return garages;
     }
 
-    public void setGarages(List<Garage> garages) {
+    public void setGarages(Set<Garage> garages) {
         this.garages = garages;
     }
 }

@@ -1,9 +1,6 @@
 package pu.fmi.carmanagement.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -15,8 +12,10 @@ public class MaintenanceRequest extends BaseEntity {
     @Column(name = "scheduled_date", nullable = false)
     private LocalDate scheduledDate;
     @ManyToOne
+    @JoinColumn(name = "car_id", nullable = true)
     private Car car;
     @ManyToOne
+    @JoinColumn(name = "garage_id", nullable = true)
     private Garage garage;
 
     public String getServiceType() {
