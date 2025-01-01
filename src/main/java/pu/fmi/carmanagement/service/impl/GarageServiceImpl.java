@@ -46,7 +46,7 @@ public class GarageServiceImpl implements GarageService {
         UtilMethods.isSourceInDB(inDB, GARAGE_NOT_FOUND_MSG + id);
 
         Garage source = inDB.get();
-        ResponseGarageDTO dto = modelMapper.map(inDB, ResponseGarageDTO.class);
+        ResponseGarageDTO dto = modelMapper.map(source, ResponseGarageDTO.class);
         return dto;
     }
 
@@ -89,7 +89,7 @@ public class GarageServiceImpl implements GarageService {
         }
         // manually remove the garage_id in maintenance_requests table
         List<MaintenanceRequest> requests = requestRepository.findAllByGarage(garage.get());
-        if (requests != null && !cars.isEmpty()) {
+        if (requests != null && !requests.isEmpty()) {
             for (MaintenanceRequest request : requests) {
                 request.setGarage(null);
                 requestRepository.save(request);

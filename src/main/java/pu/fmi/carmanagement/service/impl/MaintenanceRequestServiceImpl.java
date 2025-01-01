@@ -8,7 +8,6 @@ import pu.fmi.carmanagement.model.dto.request.CreateMaintenanceDTO;
 import pu.fmi.carmanagement.model.dto.request.UpdateMaintenanceDTO;
 import pu.fmi.carmanagement.model.dto.response.MonthlyRequestsReportDTO;
 import pu.fmi.carmanagement.model.dto.response.ResponseMaintenanceDTO;
-import pu.fmi.carmanagement.model.dto.response.YearMonthDTO;
 import pu.fmi.carmanagement.model.entity.Car;
 import pu.fmi.carmanagement.model.entity.Garage;
 import pu.fmi.carmanagement.model.entity.MaintenanceRequest;
@@ -47,7 +46,7 @@ public class MaintenanceRequestServiceImpl implements MaintenanceRequestService 
         UtilMethods.isSourceInDB(inDB, MAINTENANCE_REQUEST_NOT_FOUND_MSG + id);
 
         MaintenanceRequest source = inDB.get();
-        ResponseMaintenanceDTO dto = modelMapper.map(inDB, ResponseMaintenanceDTO.class);
+        ResponseMaintenanceDTO dto = modelMapper.map(source, ResponseMaintenanceDTO.class);
         dto.setCarName(getCarNameFromSourceMakeAndModel(source));
         return dto;
     }
@@ -86,14 +85,12 @@ public class MaintenanceRequestServiceImpl implements MaintenanceRequestService 
     }
 
     @Override
-    public ResponseMaintenanceDTO deleteRequest(Long id) {
+    public Boolean deleteRequest(Long id) {
         Optional<MaintenanceRequest> inDB = requestRepository.findById(id);
         UtilMethods.isSourceInDB(inDB, MAINTENANCE_REQUEST_NOT_FOUND_MSG + id);
         MaintenanceRequest source = inDB.get();
         requestRepository.delete(source);
-        ResponseMaintenanceDTO dto = modelMapper.map(source, ResponseMaintenanceDTO.class);
-        dto.setCarName(getCarNameFromSourceMakeAndModel(source));
-        return dto;
+        return true;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package pu.fmi.carmanagement.web;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -10,9 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pu.fmi.carmanagement.model.dto.request.CreateMaintenanceDTO;
+import pu.fmi.carmanagement.model.dto.request.UpdateMaintenanceDTO;
 import pu.fmi.carmanagement.model.dto.response.MonthlyRequestsReportDTO;
 import pu.fmi.carmanagement.model.dto.response.ResponseMaintenanceDTO;
-import pu.fmi.carmanagement.model.dto.request.UpdateMaintenanceDTO;
 import pu.fmi.carmanagement.service.MaintenanceRequestService;
 
 import java.time.LocalDate;
@@ -57,16 +56,16 @@ public class MaintenanceRequestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ResponseMaintenanceDTO> deleteRequest(@PathVariable("id") @Positive @NotNull Long id) {
-        ResponseMaintenanceDTO resp = requestService.deleteRequest(id);
+    public ResponseEntity<Boolean> deleteRequest(@PathVariable("id") @Positive @NotNull Long id) {
+        Boolean resp = requestService.deleteRequest(id);
         return ResponseEntity.ok(resp);
     }
 
     @GetMapping("monthlyRequestsReport")
     public ResponseEntity<List<MonthlyRequestsReportDTO>> getMonthlyRequestsReport(
             @Positive @NotNull @RequestParam(value = "garageId") Long garageId,
-            @Pattern(regexp = "^\\d{4}-(0[1-9]|1[0-2])$", message = "Invalid format. Expected yyyy-MM.")  @RequestParam(value = "startMonth") String startMonth,
-            @Pattern(regexp = "^\\d{4}-(0[1-9]|1[0-2])$", message = "Invalid format. Expected yyyy-MM.")  @RequestParam(value = "endMonth") String endMonth
+            @Pattern(regexp = "^\\d{4}-(0[1-9]|1[0-2])$", message = "Invalid format. Expected yyyy-MM.") @RequestParam(value = "startMonth") String startMonth,
+            @Pattern(regexp = "^\\d{4}-(0[1-9]|1[0-2])$", message = "Invalid format. Expected yyyy-MM.") @RequestParam(value = "endMonth") String endMonth
     ) {
         List<MonthlyRequestsReportDTO> resp = requestService.getMonthlyRequestsReport(garageId, startMonth, endMonth);
         return ResponseEntity.ok(resp);

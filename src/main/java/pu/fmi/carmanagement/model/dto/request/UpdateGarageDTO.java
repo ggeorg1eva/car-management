@@ -1,14 +1,14 @@
 package pu.fmi.carmanagement.model.dto.request;
 
 import jakarta.validation.constraints.Positive;
-import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.Size;
 
 public class UpdateGarageDTO {
-    @Length(max = 80)
+    @Size(max = 80)
     private String name;
-    @Length(max = 80)
+    @Size(max = 80)
     private String location;
-    @Length(max = 30)
+    @Size(max = 30)
     private String city;
     @Positive
     private Long capacity;

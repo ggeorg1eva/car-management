@@ -1,8 +1,7 @@
 package pu.fmi.carmanagement.model.dto.request;
 
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
@@ -12,7 +11,7 @@ public class UpdateMaintenanceDTO {
     private Long id;
     @Positive
     private Long carId;
-    @Length(max = 80)
+    @Size(max = 80)
     private String serviceType;
     @Nullable
     @DateTimeFormat(pattern = "yyyy-MM-dd")

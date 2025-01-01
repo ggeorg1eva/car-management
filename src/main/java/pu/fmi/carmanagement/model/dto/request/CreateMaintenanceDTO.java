@@ -3,7 +3,7 @@ package pu.fmi.carmanagement.model.dto.request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ public class CreateMaintenanceDTO {
     @Positive
     @NotNull
     private Long carId;
-    @Length(max = 80)
+    @Size(max = 80)
     @NotBlank
     private String serviceType;
     @NotNull

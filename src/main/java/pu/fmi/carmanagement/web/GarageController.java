@@ -12,7 +12,6 @@ import pu.fmi.carmanagement.model.dto.request.CreateGarageDTO;
 import pu.fmi.carmanagement.model.dto.request.UpdateGarageDTO;
 import pu.fmi.carmanagement.model.dto.response.GarageDailyAvailabilityReportDTO;
 import pu.fmi.carmanagement.model.dto.response.ResponseGarageDTO;
-import pu.fmi.carmanagement.model.dto.response.ResponseMaintenanceDTO;
 import pu.fmi.carmanagement.service.GarageService;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class GarageController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<ResponseGarageDTO>> getAllRequests(@RequestParam(value = "city", required = false) String city) {
+    public ResponseEntity<List<ResponseGarageDTO>> getAllGarages(@RequestParam(value = "city", required = false) String city) {
         List<ResponseGarageDTO> resp = garageService.getAllGaragesByCity(city);
         return new ResponseEntity<>(resp, HttpStatus.OK);
     }
@@ -51,7 +50,7 @@ public class GarageController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteRequest(@PathVariable("id") @Positive @NotNull Long id) {
+    public ResponseEntity<Boolean> deleteGarage(@PathVariable("id") @Positive @NotNull Long id) {
         Boolean resp = garageService.deleteGarage(id);
         return ResponseEntity.ok(resp);
     }

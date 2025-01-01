@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import pu.fmi.carmanagement.model.entity.Car;
 import pu.fmi.carmanagement.model.entity.Garage;
 import pu.fmi.carmanagement.model.entity.MaintenanceRequest;
 
@@ -29,4 +30,6 @@ public interface MaintenanceRequestRepository extends JpaRepository<MaintenanceR
             @Param("garageId") Long garageId,
             @Param("startDate") LocalDate startDate,
             @Param("endDate") LocalDate endDate);
+
+    List<MaintenanceRequest> findAllByCar(Car car);
 }
